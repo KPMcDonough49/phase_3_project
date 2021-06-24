@@ -73,3 +73,23 @@ We created a column called "age" that takes the "date_recorded" column and subtr
 ![Dashboard](images/dashboard_output.png)
 
 The image above shows the output of the dashboard. On the left is a dropdown for categorical features and on the right is a dropdown for numerical features. For the categorical features, we showed the percentage breakdown of each status group on a horizontal barchart. For numerical variables, we created a boxplot that shows status group versus the selected variable. In the boxplot above, we are showing our engineered "age" feature. The categorical variable currently shown is "water_quality." Looking at that chart, you can see that a high percentage of fluoride wells are functional, whereas, if water quality is unknown, a higher percentage are non functional. 
+
+We also mapped the locations for functional and non functional wells using folium and noticed that geography is an important feature. We have several geographical features such as latitude, longitude and region. The map below shows where the functional and non functional wells are located. We have circled areas in which we noticed areas where there appear to be many more non functional wells than functional wells. cmparison 
+
+![Dashboard](images/comparison_maps.png)
+
+### Modeling 
+
+After preprocessing our data, we created a dummy matrix in which our model predictions "functional" (the majority class) for every well. The confusion matrix below shows the output of predictions for that model. 
+
+![Dummy](images/dummy_confusion.png)
+
+Next we created several classification models to see which ones had the highest accuracy. The models we tested and there corresponding accuracy scores are listed below:
+
+* Logistic Regression, accuracy: .73 
+* Decision Tree Classifier, accuracy: .75
+* **Random Forest Classifier, accuracy: .79**
+* K-Nearest Neighbors, accuracy: .76
+* Support Vector Machines, accuracy: .77
+* **XGBoost, accuracy: .79** 
+
