@@ -80,7 +80,7 @@ We also mapped the locations for functional and non functional wells using foliu
 
 ### Model Creation and Evaluation  
 
-After preprocessing our data, we created a dummy matrix in which our model predictions "functional" (the majority class) for every well. The confusion matrix below shows the output of predictions for that model. 
+After preprocessing our data, we created a dummy matrix in which our model predicts "functional" (the majority class) for every well. The confusion matrix below shows the output of predictions for that model. 
 
 ![Dummy](images/dummy_matrix.png)
 
