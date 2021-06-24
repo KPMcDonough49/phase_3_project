@@ -82,7 +82,7 @@ We also mapped the locations for functional and non functional wells using foliu
 
 After preprocessing our data, we created a dummy matrix in which our model predictions "functional" (the majority class) for every well. The confusion matrix below shows the output of predictions for that model. 
 
-![Dummy](images/dummy_confusion.png)
+![Dummy](images/dummy_matrix.png)
 
 Next we created several classification models and evaluated accuracy using cross-validation. The models we tested and there corresponding accuracy scores are listed below:
 
