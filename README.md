@@ -93,7 +93,7 @@ Next we created several classification models and evaluated accuracy using cross
 * Support Vector Machines, accuracy: .77
 * **XGBoost, accuracy: .79** 
 
-Because our Random Forest model and XGBoost model had the highest accuracy scores, we decided to select these moving forward. Next, we wanted to see which models did the best job of maximizing functional precision. In this scenario, we do not want our model to predict wells as "functional" when they are not. In this scenario, people would lack access to water because the well isn't working and we aren't doing anything to remedy the situation due to the fact that our model predicted that there was nothing wrong with the well. 
+Because our Random Forest model and XGBoost model had the highest accuracy scores, we decided to select these to use moving forward. Next, we wanted to see which models did the best job of maximizing functional precision. In this scenario, we do not want our model to predict wells as "functional" when they are not. In this scenario, people would lack access to water because the well isn't working and we aren't doing anything to remedy the situation due to the fact that our model predicted that there was nothing wrong with the well. 
 
 ##### Random Forest Confusion Matrix
 ![RF Confusion](images/random_forest_confusion.png)
