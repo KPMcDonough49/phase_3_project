@@ -157,30 +157,44 @@ Linkedin: https://www.linkedin.com/in/kevin-mcdonough-01466a178/
 
 ### Repo Structure
 ```
-├── Code
-│   ├── IMDB_data.ipynb
-│   ├── New_IMDB_dataset.ipynb
-│   ├── rt_data.ipynb
-│   └── tn_cleaning.ipynb
+├── data
+│   ├── dash_df.csv
+│   ├── X_test.csv
+│   ├── X_train.csv
+│   └── y_train.csv
 |
-├── Visualizations
-│   ├── Actor_profitability.png
-│   ├── Director_profitability.png
-│   ├── Genre_profitability.png
-│   ├── Genre_profitability_boxplot.png
-│   ├── Keyword_Bubble.png
-│   ├── Keyword_counts.png
-│   ├── Keyword_revenue.png
-│   ├── Production Budget vs. Gross Revenue Scatter.png
-│   ├── RT_Tomatometer_ratings_box_correlation.PNG
-│   ├── RT_ratings_box_correlation.png
-│   └── production_gross_scatter.png
+├── images
+│   ├── age_hist.png
+│   ├── altitude.png
+│   ├── comparison_maps.png
+│   ├── dashboard_output.png
+│   ├── dummy_matrix.png
+│   ├── feature_importance.png
+│   ├── final_model_confusion.png
+│   ├── HappyKid_well.jpeg
+│   ├── installer_groups.png
+│   ├── outcome_classes.png
+│   ├── predicted_non_functional.png
+│   ├── random_forest_confusion.png
+│   ├── sales_per_waterfront.png
+│   ├── smart.gif
+│   ├── status_group_by_age.png
+│   ├── top_installers.png
+│   ├── water_quality.png
+│   └── waterpoint_type.png
 |
-├── zippedData
-├── .canvas
+├── src
+│   └── preprocessing.py
+|
+├── working_notebooks
+│   ├── Kevin's Working Notebook.ipynb
+│   ├── ryan_notebook.ipynb
+│   └── dashboard_code.py
+|
 ├── .gitignore
+├── CONTRIBUTING.md
 ├── LICENSE.md
 ├── README.md
-├── phase_1_presentation.pdf
-└── technical_notebook.ipynb
+├── final_notebook.ipynb
+└── README.md
 ```
