@@ -76,7 +76,7 @@ The image above shows the output of the dashboard. On the left is a dropdown for
 
 We also mapped the locations for functional and non functional wells using folium and noticed that geography is an important feature. We have several geographical features such as latitude, longitude and region. The map below shows where the functional and non functional wells are located. We have circled areas in which we noticed areas where there appear to be many more non functional wells than functional wells. cmparison 
 
-![Dashboard](images/comparison_maps.png)
+![Map Comparison](images/comparison_maps.png)
 
 ### Model Creation and Evaluation  
 
