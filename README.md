@@ -22,4 +22,4 @@ Each row in this dataset represents a unique water well in Tanzania and surround
 * Selecting final model and creating predictions for testing data
 
 ### Exploratory Data Analysis and Feature Engineering 
-![Classes]('images/outcome_classes.png')
+![Classes](images/outcome_classes.png)
