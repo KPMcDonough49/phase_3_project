@@ -154,4 +154,33 @@ Email: kpmcdonough@gmail.com
 Github: https://github.com/KPMcDonough49
 Linkedin: https://www.linkedin.com/in/kevin-mcdonough-01466a178/
 
+
 ### Repo Structure
+```
+├── Code
+│   ├── IMDB_data.ipynb
+│   ├── New_IMDB_dataset.ipynb
+│   ├── rt_data.ipynb
+│   └── tn_cleaning.ipynb
+|
+├── Visualizations
+│   ├── Actor_profitability.png
+│   ├── Director_profitability.png
+│   ├── Genre_profitability.png
+│   ├── Genre_profitability_boxplot.png
+│   ├── Keyword_Bubble.png
+│   ├── Keyword_counts.png
+│   ├── Keyword_revenue.png
+│   ├── Production Budget vs. Gross Revenue Scatter.png
+│   ├── RT_Tomatometer_ratings_box_correlation.PNG
+│   ├── RT_ratings_box_correlation.png
+│   └── production_gross_scatter.png
+|
+├── zippedData
+├── .canvas
+├── .gitignore
+├── LICENSE.md
+├── README.md
+├── phase_1_presentation.pdf
+└── technical_notebook.ipynb
+```
