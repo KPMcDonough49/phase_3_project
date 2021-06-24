@@ -1,113 +1,157 @@
+## Tanzanian Water Well Prediction 
+#### Authors: Ryan Reilley and Kevin McDonough 
+![Well Picture](images/HappyKid_well.jpeg)
 
-# Phase 3 Project
+### Overview
+This project analyzes data for over 74,000 water wells that have been installed in Tanzania over the years. The goal of this analysis is to determine what features of a water well provide a good prediction if the well is functional, not functional, or functional but needs repair. This will be done through exploratory data analysis and iterative predictive modeling using classification models.
 
-Congratulations! You've made it through another _intense_ module, and now you're ready to show off your newfound Machine Learning skills!
+### Business Problem
+The Tanzania Ministry of Water have hired us to predict the operating condition for wells in their country. They will use our analysis to send teams of people out to fix the waterpoints that are currently not functional or need repair. Based on our analysis, we are going to provide reccomendations based on the following.
 
-![awesome](https://raw.githubusercontent.com/learn-co-curriculum/dsc-phase-3-project/main/images/smart.gif)
+* Which wells you should start fixing first based on location
+* Which funders and installers to focus on when building new wells
+* Which type of wells should be used to replace non-functional wells
 
-All that remains in Phase 3 is to put your new skills to use with another large project! This project should take 20 to 30 hours to complete.
+### Data Understanding 
+Each row in this dataset represents a unique water well in Tanzania and surrounding information about the well. There are 59,400 rows in the training data set and 14,850 rows in the test data set. The target feature we will be predicting on is "status_group." Status_group represents the functionality of the well and there are three classes: "functional," "non functional" and "functional needs repair." There are a number of columns related to geo location of the well. There is also a good mix of continuous and categorical variables in the dataset. Each feature and its description is listed below. The different predictors are listed in the table below:
 
-## Project Overview
+| Feature | Description|
+|:-------| :-------|
+|amount_tsh| Total static head (amount water available to waterpoint)|
+|date_recorded| The date the row was entered|
+|funder| Who funded the well|
+|gps_height| Altitude of the well|
+|installer| Organization that installed the well|
+|longitude| GPS coordinate|
+|latitude| GPS coordinate|
+|wpt_name| Name of the waterpoint if there is one|
+|num_private| No info for this column|
+|basin| Geographic water basin|
+|subvillage| Geographic location|
+|region| Geographic location|
+|region_code| Geographic location (coded)|
+|district_code| Geographic location (coded)|
+|lga| Geographic location|
+|ward| Geographic location|
+|population| Population around the well|
+|public_meeting| Whether a public meeting was held in the village about WP management|
+|recorded_by| Group entering this row of data|
+|scheme_management| Who operates the waterpoint|
+|scheme_name| Who operates the waterpoint|
+|permit| If the waterpoint is permitted|
+|construction_year| Year the waterpoint was constructed|
+|extraction_type| The kind of extraction the waterpoint uses|
+|extraction_type_group| The kind of extraction the waterpoint uses|
+|extraction_type_class| The kind of extraction the waterpoint uses|
+|management| How the waterpoint is managed|
+|management_group| How the waterpoint is managed|
+|payment| What the water costs|
+|payment_type| What the water costs|
+|water_quality| The quality of the water|
+|quality_group| The quality of the water|
+|quantity| The quantity of water|
+|quantity_group| The quantity of water|
+|source| The source of the water|
+|source_type| The source of the water|
+|source_class| The source of the water|
+|waterpoint_type| The kind of waterpoint|
+|waterpoint_type_group| The kind of waterpoint|
 
-For this project, you will engage in the full data science process from start to finish, solving a classification problem using a dataset of your choice.
+### Methods
+* Preliminary data cleaning, exploratory data analysis and feature engineering to identify and create features that will generate accurate predictions
+* scaling and fitting data to multiple classification models using pipelines  
+* Evaluating model performance using selected metrics and tuning hyperparameters to maximize accuracy and micro-precision 
+* Selecting final model and creating predictions for testing data
 
-### The Data
+### Exploratory Data Analysis and Feature Engineering 
+![Classes](images/outcome_classes.png)
 
-You have the option to either **choose a dataset from a curated list** or **choose your own dataset _not on the list_**. The goal is to choose a dataset appropriate to the type of business problem and/or classification methods that most interests you. It is up to you to define a stakeholder and business problem appropriate to the dataset you choose. If you are feeling overwhelmed or behind, we recommend you choose dataset #2 or #3 from the curated list.
+The chart above shows us the counts for each over our target classes. We have a bit of a class imbalance issue in that "functional needs repair" is a small percentage of the dataset. Knowing this, we will use resampling methods when creating our model. 
 
-If you choose a dataset from the curated list, **inform your instructor which dataset you chose** and jump right into the project. If you choose your own dataset, **run the dataset and business problem by your instructor for approval** before starting your project.
+We created a column called "age" that takes the "date_recorded" column and subtracts the "construction_year" column and graphing this showed us that non functional wells tended to be older. Because there was a lot of data points missing in the "construction_year columns, we also created a new column which binned age into decades and created an "unknown" category for missing values. In order to visualize the relationship between different numerical and categorical variables with our target variable, we created a dashboard that allowed us to select different features via dropdown.
 
-### Curated List of Datasets
+![Dashboard](images/dashboard_output.png)
 
-You may select any of the four datasets below - we provide brief descriptions of each. Follow the links to learn more about the dataset and business problems before making a final decision.
+The image above shows the output of the dashboard. On the left is a dropdown for categorical features and on the right is a dropdown for numerical features. For the categorical features, we showed the percentage breakdown of each status group on a horizontal barchart. For numerical variables, we created a boxplot that shows status group versus the selected variable. In the boxplot above, we are showing our engineered "age" feature. The categorical variable currently shown is "water_quality." Looking at that chart, you can see that a high percentage of fluoride wells are functional, whereas, if water quality is unknown, a higher percentage are non functional. 
 
-#### 1) [Chicago Car Crashes](https://data.cityofchicago.org/Transportation/Traffic-Crashes-Crashes/85ca-t3if)
-Note this links also to [Vehicle Data](https://data.cityofchicago.org/Transportation/Traffic-Crashes-Vehicles/68nd-jvt3) and to [Driver/Passenger Data](https://data.cityofchicago.org/Transportation/Traffic-Crashes-People/u6pd-qa9d).
+We also mapped the locations for functional and non functional wells using folium and noticed that geography is an important feature. We have several geographical features such as latitude, longitude and region. The map below shows where the functional and non functional wells are located. We have circled areas in which we noticed areas where there appear to be many more non functional wells than functional wells. cmparison 
 
-Build a classifier to predict the primary contributory cause of a car accident, given information about the car, the people in the car, the road conditions etc. You might imagine your audience as a Vehicle Safety Board who's interested in reducing traffic accidents, or as the City of Chicago who's interested in becoming aware of any interesting patterns. Note that there is a **multi-class** classification problem. You will almost certainly want to bin or trim or otherwise limit the number of target categories on which you ultimately predict. Note e.g. that some primary contributory causes have very few samples.
+![Map Comparison](images/comparison_maps.png)
 
-#### 2) [Terry Traffic Stops](https://catalog.data.gov/dataset/terry-stops)
-In [*Terry v. Ohio*](https://www.oyez.org/cases/1967/67), a landmark Supreme Court case in 1967-8, the court found that a police officer was not in violation of the "unreasonable search and seizure" clause of the Fourth Amendment, even though he stopped and frisked a couple of suspects only because their behavior was suspicious. Thus was born the notion of "reasonable suspicion", according to which an agent of the police may e.g. temporarily detain a person, even in the absence of clearer evidence that would be required for full-blown arrests etc. Terry Stops are stops made of suspicious drivers.
+### Model Creation and Evaluation  
 
-Build a classifier to predict whether an arrest was made after a Terry Stop, given information about the presence of weapons, the time of day of the call, etc. Note that this is a **binary** classification problem.
+After preprocessing our data, we created a dummy matrix in which our model predictions "functional" (the majority class) for every well. The confusion matrix below shows the output of predictions for that model. 
 
-Note that this dataset also includes information about gender and race. You **may** use this data as well. You may, e.g. pitch your project as an inquiry into whether race (of officer or of subject) plays a role in whether or not an arrest is made.
+![Dummy](images/dummy_confusion.png)
 
-If you **do** elect to make use of race or gender data, be aware that this can make your project a highly sensitive one; your discretion will be important, as well as your transparency about how you use the data and the ethical issues surrounding it.
+Next we created several classification models and evaluated accuracy using cross-validation. The models we tested and there corresponding accuracy scores are listed below:
 
-#### 3) [SyriaTel Customer Churn](https://www.kaggle.com/becksddf/churn-in-telecoms-dataset)
+* Logistic Regression, accuracy: .73 
+* Decision Tree Classifier, accuracy: .75
+* **Random Forest Classifier, accuracy: .79**
+* K-Nearest Neighbors, accuracy: .76
+* Support Vector Machines, accuracy: .77
+* **XGBoost, accuracy: .79** 
 
-Build a classifier to predict whether a customer will ("soon") stop doing business with SyriaTel, a telecommunications company. Note that this is a **binary** classification problem.
+Because our Random Forest model and XGBoost model had the highest accuracy scores, we decided to select these moving forward. Next, we wanted to see which models did the best job of maximizing functional precision. In this scenario, we do not want our model to predict wells as "functional" when they are not. In this scenario, people would lack access to water because the well isn't working and we aren't doing anything to remedy the situation due to the fact that our model predicted that there was nothing wrong with the well. 
 
-Most naturally, your audience here would be the telecom business itself, interested in losing money on customers who don't stick around very long. Are there any predictable patterns here?
+##### Random Forest Confusion Matrix
+![RF Confusion](images/random_forest_confusion.png)
 
-#### 4) [Tanzanian Water Well Data](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/page/23/)
-This dataset is part of an *active competition* until April 31, 2021!
+##### XGBoost Confusion Matrix
+![XGB Confusion](images/XGBoost_confusion.png)
 
-Tanzania, as a developing country, struggles with providing clean water to its population of over 57,000,000. There are many waterpoints already established in the country, but some are in need of repair while others have failed altogether.
+Looking at the output of the confusion matrices for our Random Forest Model and XGBoost model, you can see that the Random Forest model incorrectly predicts "non functional" and "functional needs repair" wells as "functional" at a lower rate than the XGBoost model (the two boxes at the bottom of the left column). Further corraborating this, we looked at the classification reports for each model and noticed that the Random Forest Model had a higher functional precision than the XGBoost model (.81 versus .78). Due to this, we decided to use the Random Forest model. 
 
-Build a classifier to predict the condition of a water well, using information about the sort of pump, when it was installed, etc. Note that this is a **ternary** classification problem.
+After selecting our classification model, we wanted to optimize the model for the metric we deemed most important metric. As we discussed above, we want to minimize instances in which the model predicts that wells are functonal when they are not. To achieve this, we would like to maximize micro-precision true "functional" predictions / (true "functional" predictions + false positive "functional" predictions). In order to achieve this, we ran another grid search using different hyperparameters in order to optimize micro-precision. 
 
-### Sourcing Your Own Data
+![Final Confusion](images/final_model_confusion.png)
 
-Sourcing new data is a valuable skill for data scientists, but it requires a great deal of care. An inappropriate dataset or an unclear business problem can lead you spend a lot of time on a project that delivers underwhelming results. The guidelines below will help you complete a project that demonstrates your ability to engage in the full data science process.
+The image above shows us the confusion matrix for our final model after optimizing for micro precision. Comparing this to our base models, you can see that the values in the two lower boxes on the left column are lower than they were previously. Additionally, on the classification report, the functional precision improved from .81 to .82 without causing a decrease in accuracy (still .79).
 
-Your dataset must be...
+We also charted the most important features of our model to get a better sense of what features led to a well being non functional: 
 
-1. **Appropriate for classification.** It should have a categorical outcome or the data needed to engineer one.   
+![Feature Importances](images/feature_importance.png)
 
-2. **Usable to solve a specific business problem.** This solution must rely on your classification model.
+Our last step was to take our final model, fit it on our testing data and use it to create predictions. We did this and then mapped the "non functional" predictions on folium so we could figure out which locations to begin fixing wells. 
 
-3. **Somewhat complex.** It should contain a minimum of 1000 rows and 10 features.
+![Predictions Map](images/predicted_non_functional.png)
 
-4. **Unfamiliar.** It can't be one we've already worked with during the course or that is commonly used for demonstration purposes (e.g. MNIST).
+In the map above we circled areas in which we noticed high counts of predicted non functional wells. 
 
-5. **Manageable.** Stick to datasets that you can model using the techniques introduced in Phase 3.
+### Conclusions 
 
-Once you've sourced your own dataset and identified the business problem you want to solve with it, you must to **run them by your instructor for approval**.
+**1. Start fixing wells that are non-functional and located where the counts are the highest .** We looked at where every non-functional well is located on a map. We could start where the clusters were the highest. 
 
-#### Problem First, or Data First?
+**2. Recommend replacing non-functional wells with the top installers.** One of the top predictors of the status group of the well was the installer count, which showed the number of installs by each installer company. Consider using a top installer for replacing non-functional wells. 
 
-There are two ways that you can source your own dataset: **_Problem First_** or **_Data First_**. The less time you have to complete the project, the more strongly we recommend a Data First approach to this project.
+**3. Consider replacing older wells.** Most functional wells are under 20 years old. Consider looking at the age of the well to determine if it is non-functional.
 
-**_Problem First_**: Start with a problem that you are interested in that you could potentially solve with a classification model. Then look for data that you could use to solve that problem. This approach is high-risk, high-reward: Very rewarding if you are able to solve a problem you are invested in, but frustrating if you end up sinking lots of time in without finding appropriate data. To mitigate the risk, set a firm limit for the amount of time you will allow yourself to look for data before moving on to the Data First approach.
+### Next Steps
 
-**_Data First_**: Take a look at some of the most popular internet repositories of cool data sets we've listed below. If you find a data set that's particularly interesting for you, then it's totally okay to build your problem around that data set.
+Further analyses could provide even more insight into how we can predict the operating condition of wells in Tanzania: 
 
-There are plenty of amazing places that you can get your data from. We recommend you start looking at data sets in some of these resources first:
+**More features of the wells** Other features that could indicate a functioning well include usage rate (how often it gets used in a given day/week and month), proximity to nearest subvillage, 
 
-* [UCI Machine Learning Datasets Repository](https://archive.ics.uci.edu/ml/datasets.php)
-* [Kaggle Datasets](https://www.kaggle.com/datasets)
-* [Awesome Datasets Repo on Github](https://github.com/awesomedata/awesome-public-datasets)
-* [New York City Open Data Portal](https://opendata.cityofnewyork.us/)
-* [Inside AirBNB](http://insideairbnb.com/)
+**Better idea of populations of specific regions.** There was a lot of missing data that we had to impute for the population feature. If we could gather actual population estimates through a thorough census, we could then determine which wells to focus on first. Those wells that are non-functioning in a larger populated area would be highest priority.
 
-## The Deliverables
+**Better idea of when the well was contructed.** THis was another column of  a lot of missing values. If we could gather more information on the contruction year of the well based on geological surveys, we can determine how much longer a well will last before it becomes non-functional.
 
-There are three deliverables for this project:
+**Implement new technology for functionality tracking.** We could implement sensors on all the wells to determine if they are being used. We may be able to also capture satellite images of the wells to see if they are being used. 
 
-* A **GitHub repository**
-* A **Jupyter Notebook**
-* A **non-technical presentation**
+### For More Information:
+Please review our full analysis in our [Final Notebook](./final_notebook.ipynb), our [Images](./images), or our [Presentation](./phase_1_presentation.pdf). 
 
-Review the "Project Submission & Review" page in the "Milestones Instructions" topic for instructions on creating and submitting your deliverables. Refer to the rubric associated with this assignment for specifications describing high-quality deliverables.
+For any additional questions, please contact Ryan Reilley and Kevin McDonough
 
-### Key Points
+Ryan: 
+Email: ryan.m.reilly@gmail.com
+Github: https://github.com/ryanreilly
+Linkedin: https://www.linkedin.com/in/ryanreilly1/
 
-* **Your deliverables should explicitly address each step of the data science process.** Refer to [the Data Science Process lesson](https://github.com/learn-co-curriculum/dsc-data-science-processes) from Topic 19 for more information about process models you can use.
+Kevin: 
+Email: kpmcdonough@gmail.com
+Github: https://github.com/KPMcDonough49
+Linkedin: https://www.linkedin.com/in/kevin-mcdonough-01466a178/
 
-* **Your Jupyter Notebook should demonstrate an iterative approach to modeling.** This means that you begin with a basic model, evaluate it, and then provide justification for and proceed to a new model. We encourage you to try a bunch of different models: logistic regression, decision trees, or anything else you think would be appropriate.
-
-* **You must choose appropriate classification metrics and use them to evaluate your models.** Choosing the right classification metrics is a key data science skill, and should be informed by data exploration and the business problem itself. You must then use this metric to evaluate your model performance using both training and testing data.
-
-## Getting Started
-
-Create a new repository for your project to get started. We recommend structuring your project repository similar to the structure in [the Phase 1 Project Template](https://github.com/learn-co-curriculum/dsc-project-template). You can do this either by creating a new fork of that repository to work in or by building a new repository from scratch that mimics that structure.
-
-## Project Submission and Review
-
-Review the "Project Submission & Review" page in the "Milestones Instructions" topic to learn how to submit your project and how it will be reviewed. Your project must pass review for you to progress to the next Phase.
-
-## Summary
-
-This project is an opportunity to expand your data science toolkit by evaluating, choosing, and working with new datasets. Spending time up front making sure you have a good dataset for a solvable problem will help avoid the major problems that can sometimes derail data science projects. You've got this!
+### Repo Structure
