@@ -140,7 +140,7 @@ Further analyses could provide even more insight into how we can predict the ope
 **Implement new technology for functionality tracking.** We could implement sensors on all the wells to determine if they are being used. We may be able to also capture satellite images of the wells to see if they are being used. 
 
 ### For More Information:
-Please review our full analysis in our [Final Notebook](./final_notebook.ipynb), our [Images](./images), our [Presentation](./final_presentation_phase_3.pdf),   
+Please review our full analysis in our [Final Notebook](./final_notebook.ipynb), our [Images](./images), our [Presentation](./final_presentation_phase_3.pdf)   
 and our [Dashboard Code](./working_notebooks/dashboard_code.py). 
 
 For any additional questions, please contact Ryan Reilley and Kevin McDonough
