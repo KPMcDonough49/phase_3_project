@@ -140,7 +140,7 @@ Further analyses could provide even more insight into how we can predict the ope
 **Implement new technology for functionality tracking.** We could implement sensors on all the wells to determine if they are being used. We may be able to also capture satellite images of the wells to see if they are being used. 
 
 ### For More Information:
-Please review our full analysis in our [Final Notebook](./final_notebook.ipynb), our [Images](./images), or our [Presentation](./final_presentation_phase_3.pdf). 
+Please review our full analysis in our [Final Notebook](./final_notebook.ipynb), our [Images](./images), our [Presentation](./final_presentation_phase_3.pdf), and our [Dashboard Code](./working_notebooks/dashboard_code.py). 
 
 For any additional questions, please contact Ryan Reilley and Kevin McDonough
 
@@ -179,9 +179,11 @@ Linkedin: https://www.linkedin.com/in/kevin-mcdonough-01466a178/
 │   ├── sales_per_waterfront.png
 │   ├── smart.gif
 │   ├── status_group_by_age.png
+│   ├── Submission.png
 │   ├── top_installers.png
 │   ├── water_quality.png
-│   └── waterpoint_type.png
+│   ├── waterpoint_type.png
+│   └── XGBoost_confusion.png
 |
 ├── src
 │   └── preprocessing.py
@@ -196,5 +198,6 @@ Linkedin: https://www.linkedin.com/in/kevin-mcdonough-01466a178/
 ├── LICENSE.md
 ├── README.md
 ├── final_notebook.ipynb
-└── README.md
+├── final_predictions.csv
+└── final_presentation_phase_3.pdf
 ```
