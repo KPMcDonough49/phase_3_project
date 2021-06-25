@@ -3,7 +3,7 @@
 ![Well Picture](images/HappyKid_well.jpeg)
 
 ### Overview
-This project analyzes data for over 74,000 water wells that have been installed in Tanzania over the years. The goal of this analysis is to determine what features of a water well provide a good prediction if the well is functional, not functional, or functional but needs repair. This will be done through exploratory data analysis and iterative predictive modeling using classification models.
+This project analyzes data for over 59,000 water wells that have been installed in Tanzania over the years. The goal of this analysis is to determine what features of a water well provide a good prediction of if the well is functional, not functional, or functional but needs repair. This will be done through exploratory data analysis and iterative predictive modeling using classification models.
 
 ### Business Problem
 The Tanzania Ministry of Water have hired us to predict the operating condition for wells in their country. They will use our analysis to send teams of people out to fix the waterpoints that are currently not functional or need repair. Based on our analysis, we are going to provide reccomendations based on the following.
@@ -103,7 +103,7 @@ Because our Random Forest model and XGBoost model had the highest accuracy score
 
 Looking at the output of the confusion matrices for our Random Forest Model and XGBoost model, you can see that the Random Forest model incorrectly predicts "non functional" and "functional needs repair" wells as "functional" at a lower rate than the XGBoost model (the two boxes at the bottom of the left column). Further corraborating this, we looked at the classification reports for each model and noticed that the Random Forest Model had a higher functional precision than the XGBoost model (.81 versus .78). Due to this, we decided to use the Random Forest model. 
 
-After selecting our classification model, we wanted to optimize the model for the metric we deemed most important metric. As we discussed above, we want to minimize instances in which the model predicts that wells are functonal when they are not. To achieve this, we would like to maximize micro-precision true "functional" predictions / (true "functional" predictions + false positive "functional" predictions). In order to achieve this, we ran another grid search using different hyperparameters in order to optimize micro-precision. 
+After selecting our classification model, we wanted to optimize the model for the metric we deemed most important. As we discussed above, we want to minimize instances in which the model predicts that wells are functonal when they are not. To achieve this, we would like to maximize micro-precision: true "functional" predictions / (true "functional" predictions + false positive "functional" predictions). In order to achieve this, we ran another grid search using different hyperparameters in order to optimize micro-precision. 
 
 ![Final Confusion](images/final_model_confusion.png)
 
@@ -131,18 +131,19 @@ In the map above we circled areas in which we noticed high counts of predicted n
 
 Further analyses could provide even more insight into how we can predict the operating condition of wells in Tanzania: 
 
-**More features of the wells** Other features that could indicate a functioning well include usage rate (how often it gets used in a given day/week and month), proximity to nearest subvillage, 
+**More features of the wells** Other features that could indicate a functioning well include usage rate (how often it gets used in a given day/week and month), and proximity to nearest subvillage.
 
 **Better idea of populations of specific regions.** There was a lot of missing data that we had to impute for the population feature. If we could gather actual population estimates through a thorough census, we could then determine which wells to focus on first. Those wells that are non-functioning in a larger populated area would be highest priority.
 
-**Better idea of when the well was contructed.** THis was another column of  a lot of missing values. If we could gather more information on the contruction year of the well based on geological surveys, we can determine how much longer a well will last before it becomes non-functional.
+**Better idea of when the well was contructed.** This was another column of  a lot of missing values. If we could gather more information on the contruction year of the well based on geological surveys, we can determine how much longer a well will last before it becomes non-functional.
 
-**Implement new technology for functionality tracking.** We could implement sensors on all the wells to determine if they are being used. We may be able to also capture satellite images of the wells to see if they are being used. 
+**Implement new technology for functionality tracking.** We could implement sensors on all the wells to determine if they are being used. 
 
 ### For More Information:
-Please review our full analysis in our [Final Notebook](./final_notebook.ipynb), our [Images](./images), or our [Presentation](./phase_1_presentation.pdf). 
+Please review our full analysis in our [Final Notebook](./final_notebook.ipynb), our [Images](./images), our [Presentation](./final_presentation_phase_3.pdf)   
+and our [Dashboard Code](./working_notebooks/dashboard_code.py). 
 
-For any additional questions, please contact Ryan Reilley and Kevin McDonough
+For any additional questions, please contact Ryan Reilly and Kevin McDonough
 
 Ryan: 
 Email: ryan.m.reilly@gmail.com
@@ -153,6 +154,15 @@ Kevin:
 Email: kpmcdonough@gmail.com
 Github: https://github.com/KPMcDonough49
 Linkedin: https://www.linkedin.com/in/kevin-mcdonough-01466a178/
+
+### Competition Results 
+
+After we evaluated our model we preprocessed the testing set (which didn't contain the target column) and generated predictions for those wells. We then submitted our results to the competition [here](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/). Below is the summary of our submission results: 
+
+![Submission Results](images/Submission.png)
+
+
+It looks like we landed in the top 25% of all competitors, which is a good first try. Many teams submitted more than one. 
 
 
 ### Repo Structure
@@ -179,9 +189,11 @@ Linkedin: https://www.linkedin.com/in/kevin-mcdonough-01466a178/
 │   ├── sales_per_waterfront.png
 │   ├── smart.gif
 │   ├── status_group_by_age.png
+│   ├── Submission.png
 │   ├── top_installers.png
 │   ├── water_quality.png
-│   └── waterpoint_type.png
+│   ├── waterpoint_type.png
+│   └── XGBoost_confusion.png
 |
 ├── src
 │   └── preprocessing.py
@@ -196,5 +208,6 @@ Linkedin: https://www.linkedin.com/in/kevin-mcdonough-01466a178/
 ├── LICENSE.md
 ├── README.md
 ├── final_notebook.ipynb
-└── README.md
+├── final_predictions.csv
+└── final_presentation_phase_3.pdf
 ```
