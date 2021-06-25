@@ -157,9 +157,9 @@ Linkedin: https://www.linkedin.com/in/kevin-mcdonough-01466a178/
 
 ### Competition Results 
 
-After we evaluated our model we preprocessed the testing set (which didn't contain the target column) and generated predictions for those wells. We then submitted our results to the competition here [Here](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/). Below is the submission results. 
+After we evaluated our model we preprocessed the testing set (which didn't contain the target column) and generated predictions for those wells. We then submitted our results to the competition here [Here](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/). Below is the summary of our submission results: 
 
-![Final Confusion](images/Submission.png)
+![Submission Results](images/Submission.png)
 
 
 It looks like we landed in the top 25% of all competitors, which is a good first try. Many teams submitted more than one. 
