@@ -131,19 +131,19 @@ In the map above we circled areas in which we noticed high counts of predicted n
 
 Further analyses could provide even more insight into how we can predict the operating condition of wells in Tanzania: 
 
-**More features of the wells** Other features that could indicate a functioning well include usage rate (how often it gets used in a given day/week and month), proximity to nearest subvillage, 
+**More features of the wells** Other features that could indicate a functioning well include usage rate (how often it gets used in a given day/week and month), and proximity to nearest subvillage.
 
 **Better idea of populations of specific regions.** There was a lot of missing data that we had to impute for the population feature. If we could gather actual population estimates through a thorough census, we could then determine which wells to focus on first. Those wells that are non-functioning in a larger populated area would be highest priority.
 
-**Better idea of when the well was contructed.** THis was another column of  a lot of missing values. If we could gather more information on the contruction year of the well based on geological surveys, we can determine how much longer a well will last before it becomes non-functional.
+**Better idea of when the well was contructed.** This was another column of  a lot of missing values. If we could gather more information on the contruction year of the well based on geological surveys, we can determine how much longer a well will last before it becomes non-functional.
 
-**Implement new technology for functionality tracking.** We could implement sensors on all the wells to determine if they are being used. We may be able to also capture satellite images of the wells to see if they are being used. 
+**Implement new technology for functionality tracking.** We could implement sensors on all the wells to determine if they are being used. 
 
 ### For More Information:
 Please review our full analysis in our [Final Notebook](./final_notebook.ipynb), our [Images](./images), our [Presentation](./final_presentation_phase_3.pdf)   
 and our [Dashboard Code](./working_notebooks/dashboard_code.py). 
 
-For any additional questions, please contact Ryan Reilley and Kevin McDonough
+For any additional questions, please contact Ryan Reilly and Kevin McDonough
 
 Ryan: 
 Email: ryan.m.reilly@gmail.com
