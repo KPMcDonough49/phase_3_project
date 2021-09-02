@@ -3,7 +3,7 @@
 ![Well Picture](images/HappyKid_well.jpeg)
 
 ### Overview
-This project analyzes data for over 59,000 water wells that have been installed in Tanzania over the years. The goal of this analysis is to determine what features of a water well provide a good prediction of if the well is functional, not functional, or functional but needs repair. This will be done through exploratory data analysis and iterative predictive modeling using classification models.
+This project analyzes data for over 59,000 water wells that have been installed in Tanzania over the years. The goal of this analysis is to determine which features of a water well provide a good prediction of if the well is functional, not functional, or functional but needs repair. This will be done through exploratory data analysis and iterative predictive modeling using classification models.
 
 ### Business Problem
 The Tanzania Ministry of Water have hired us to predict the operating condition for wells in their country. They will use our analysis to send teams of people out to fix the waterpoints that are currently not functional or need repair. Based on our analysis, we are going to provide reccomendations based on the following.
